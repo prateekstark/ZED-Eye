@@ -1,0 +1,19 @@
+>> Parser and coordinate checked and debugging done. Several errors are still present..!
+
+>> My lab is going quite busy these days, that is why its taking a longer time. But I plan to check and debug the findCamera.cpp and pointCameraToMap.cpp today itself.
+
+>> The full working state can be reached in a day or two max..
+
+Sorry for the delay!
+
+Update:
+Checked and debugged the other two helper files as well.
+
+What Remains:
+>> Checking landmark_recognition.cpp and finally compiling all the files together
+>> Preparing README.md
+
+
+Update: Code compacted, done debugging.
+
+What remains: exeperimental debugging, updating README.md
