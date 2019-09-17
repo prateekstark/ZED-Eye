@@ -28,10 +28,6 @@ from object_detection.utils import visualization_utils as vis_util
 
 is_human_present = False
 
-
-
-
-
 def load_image_into_numpy_array(image):
     ar = image.get_data()
     ar = ar[:, :, 0:3]
@@ -56,6 +52,12 @@ depth_np_global = np.zeros([width, height, 4], dtype=np.float)
 
 exit_signal = False
 new_data = False
+
+def callback(data):
+    global my_string
+    my_string = data.data
+    rospy.loginfo(my_string)
+
 
 
 # ZED image capture thread function

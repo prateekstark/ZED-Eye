@@ -27,7 +27,11 @@ from object_detection.utils import visualization_utils as vis_util
 
 is_human_present = False
 
-
+# 
+# def callback(data):
+#     global my_string
+#     my_string = data.data
+#     rospy.loginfo(my_string)
 
 
 
