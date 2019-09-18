@@ -4,11 +4,22 @@ Landmark-Recognition is a C++/Python library for obtaining accurate pose of the 
 
 
 ## Usage
+```
+roscore
+```
 
 ```python
+
 python3 human_detection_ros.py # runs the human detection module and publishes the x, y, z coordinates
 
 ```
+If you are not connected to the robot and just need to check the code, please run
+
+```python
+python3 pseudo_publisher.py
+
+```
+
 ```python
 python3 lanmark_recognition.py save_landmark # To save the landmark in the dictionary
 
