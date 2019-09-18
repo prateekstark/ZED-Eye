@@ -2,12 +2,13 @@
 from math import sin, cos, asin, acos
 import rospy
 from std_msgs.msg import String
+from geometry_msgs.msg import Pose
 import sys
 class coordinate:
     frameID = 0
-    x = 0
-    y = 0
-    z = 0
+    x = 0.0
+    y = 0.0
+    z = 0.0
 
 
 my_string = ""
@@ -25,20 +26,21 @@ temp_q4 = 0;
 def callback(data):
     global my_string
     my_string = data.data
-    rospy.loginfo(my_string)
+    # print("1")
+    # rospy.loginfo(my_string)
 
 
 def callback1(data):
     global temp_x1, temp_x2, temp_x3, temp_q1, temp_q2, temp_q3, temp_q4;
-    temp_x1 = data.pose.pose.position.x
-    temp_x2 = data.pose.pose.position.y
-    temp_x3 = data.pose.pose.position.z
-    temp_q1 = data.pose.pose.orientation.w
-    temp_q1 = data.pose.pose.orientation.x
-    temp_q1 = data.pose.pose.orientation.y
-    temp_q1 = data.pose.pose.orientation.z
+    temp_x1 = data.position.x
+    temp_x2 = data.position.y
+    temp_x3 = data.position.z
+    temp_q1 = data.orientation.w
+    temp_q1 = data.orientation.x
+    temp_q1 = data.orientation.y
+    temp_q1 = data.orientation.z
     # my_string1 = data.data
-    rospy.loginfo(data)
+    # rospy.loginfo(data)
 
 def globalCameraCoordinate(pointGlobalCoordinate, pointLocalCoordinate, theta):
     mapGlobalCoordinate = coordinate()
@@ -87,27 +89,31 @@ def getLandmarkCoordinate(landmarkName):
     file.close()
     return returnCoordinate
 
-
-def getThetaFromQuaternion(or_w):
-
-
 def main():
     if(len(sys.argv) == 2):
         action = str(sys.argv[1])
         action1 = "save_landmark";
         action2 = "find_camera";
-
         rospy.init_node('listener', anonymous=True)
-        rospy.init_node('listener1', anonymous=True)
         if(action == action1):
-            rospy.Subscriber("chatter", String, callback)
-            rospy.Subscriber("/amcl_pose", Pose(), callback1)
-
+            count = 10000
+            while count >= 0:
+                print(count)
+                rospy.Subscriber("/chatter", String, callback)
+                rospy.Subscriber("/amcl_pose", Pose, callback1)
+                count = count - 1
+            
+            
+            print(my_string)
             data1 = my_string.split()
-            data2 = my_string1.split()
-            x = data1[1]
-            y = data1[2]
-            z = data1[3]
+                # data2 = my_string1.split()
+            # return
+            
+            x = float(data1[5])
+            y = float(data1[7])
+            z = float(data1[9])
+            print(str(x) + " " + str(y) + " " + str(z))
+            
             self_x = temp_x1
             self_y = temp_x2
             self_z = temp_x3
@@ -115,7 +121,10 @@ def main():
             or_x = temp_q2
             or_y = temp_q3
             or_z = temp_q4
-            theta = 2*acos(or_w);
+            theta = 2*acos(or_w)
+            print("theta = " + str(theta))
+
+
             objectName = "KUKA Robot"
             pointLocalCoordinate = coordinate()
             pointLocalCoordinate.frameID = 1
@@ -135,13 +144,17 @@ def main():
                 myFile.write(tempWrite)
                 myFile.close()
         elif(action == action2):
-            rospy.Subscriber("chatter", String, callback)
-            rospy.Subscriber("Chatter1", String, callback1)
+            count = 10000
+            while(count >= 0):
+                rospy.Subscriber("/chatter", String, callback)
+                rospy.Subscriber("/amcl_pose", String, callback1)
+                count = count - 1
             data1 = my_string.split()
-            localx = data1[1]
-            localy = data1[2]
-            localz = data1[3]
-            theta = my_string1.split()[4]
+            localx = float(data1[5])
+            localy = float(data1[7])
+            localz = float(data1[9])
+            theta = 2*acos(temp_q4)
+            print('theta = ' + str(theta))
             landmarkLocalCoordinate = coordinate()
             landmarkLocalCoordinate.frameID = 1
             landmarkLocalCoordinate.x = localx
