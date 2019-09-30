@@ -154,11 +154,11 @@ def display_objects_distances(image_np, depth_np, num_detections, boxes_, classe
 
                 distance = math.sqrt(x * x + y * y + z * z)
 
-                display_str = display_str + " " + str('% 6.2f' % distance) + " m"
+                display_str = display_str + " " + str('% 6.2f' % distance)
                 if "person" in display_str:
                     # is_human_present = True
                     rospy.loginfo(display_str)
-                    pub.publish(display_str + ' x: ' + str(x) + ' y: ' + str(y) + ' z: ' + str(z))
+                    pub.publish(display_str + " " + str(x) + " " + str(y) + " " + str(z))
                     # rate.sleep()
                     print(display_str + ' x: ' + str(x) + ' y: ' + str(y) + 'z: ' + str(z))
                 # print(distance)

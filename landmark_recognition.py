@@ -22,13 +22,9 @@ temp_q2 = 0;
 temp_q3 = 0;
 temp_q4 = 0;
 
-
 def callback(data):
     global my_string
     my_string = data.data
-    # print("1")
-    # rospy.loginfo(my_string)
-
 
 def callback1(data):
     global temp_x1, temp_x2, temp_x3, temp_q1, temp_q2, temp_q3, temp_q4;
@@ -39,8 +35,6 @@ def callback1(data):
     temp_q1 = data.orientation.x
     temp_q1 = data.orientation.y
     temp_q1 = data.orientation.z
-    # my_string1 = data.data
-    # rospy.loginfo(data)
 
 def globalCameraCoordinate(pointGlobalCoordinate, pointLocalCoordinate, theta):
     mapGlobalCoordinate = coordinate()
@@ -106,9 +100,6 @@ def main():
             
             print(my_string)
             data1 = my_string.split()
-                # data2 = my_string1.split()
-            # return
-            
             x = float(data1[5])
             y = float(data1[7])
             z = float(data1[9])
