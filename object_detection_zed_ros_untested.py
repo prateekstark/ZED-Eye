@@ -10,7 +10,7 @@ import tarfile
 import os.path
 import rospy, time, math, random
 from std_msgs.msg import Int32, Float32, String
-from basics.msg import TimerAction, TimerGoal, TimeResult
+#from basics.msg import TimerAction, TimerGoal, TimeResult
 from time import sleep
 
 from threading import Lock, Thread

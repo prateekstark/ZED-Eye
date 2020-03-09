@@ -1,0 +1,25 @@
+Things Done till now:
+	> Lane Detection working with Videos (Good)
+	
+	> Extracting frames of Camera to be fed into OCR
+	
+	> OCR working with photos
+	
+	> Object Detection done on videos....(Done with ZED as well)
+
+Future work for making it submittable--
+	
+	> The output of Object Detection should be printed in file
+	
+	> Link frame_extractor with ZED and feed it to OCR
+	
+	> Lane Detection with Camera (Needs lab environmant, physical environment)
+
+
+Main Problem :
+	> The speed of frame analysis of object detection is slow. 
+
+Probable Solution:
+	> Either use the frame_extractor data to feed in Object Detection...
+	
+	> Use a high GPU system and making GPU on.

@@ -22,6 +22,8 @@ vector<float> getDistance(sl::Mat point_cloud, int i, int j){
 
 
 
+
+
 int main(int argc, char **argv){
 	Camera zed;
 	InitParameters initParameters;
